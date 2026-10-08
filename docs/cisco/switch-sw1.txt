@@ -1,0 +1,26 @@
+enable
+configure terminal
+hostname SW1
+
+interface vlan 1
+ ip address 192.168.10.2 255.255.255.0
+ no shutdown
+exit
+ip default-gateway 192.168.10.1
+
+interface range fastEthernet0/1-4
+ switchport mode access
+ spanning-tree portfast
+exit
+
+ip domain-name laboratorio.local
+username admin privilege 15 secret RedLab123!
+crypto key generate rsa modulus 1024
+ip ssh version 2
+line vty 0 4
+ login local
+ transport input ssh
+exit
+
+end
+write memory
