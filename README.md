@@ -1,43 +1,57 @@
 # Network Monitor TI
 
-Sistema web para registrar dispositivos de una red y dar seguimiento a su disponibilidad, latencia y alertas. Lo desarrollé como parte de mi portafolio para combinar programación con temas de redes que he trabajado en Cisco y en la carrera.
+Sistema web para **registrar y monitorear dispositivos de red**, dando seguimiento a disponibilidad, latencia, historial de comprobaciones y alertas.
 
-La idea es mantener el proyecto enfocado en monitoreo básico y entendible: se agregan los equipos que se quieren supervisar y el sistema guarda los resultados de cada comprobación. No hace descubrimiento masivo ni escaneo de rangos completos.
+Lo desarrollé como proyecto de portafolio para combinar programación con fundamentos de redes y laboratorios Cisco. El enfoque es mantener un monitoreo básico, claro y controlado: los dispositivos se registran manualmente y el sistema guarda los resultados de cada comprobación.
 
-## Funciones principales
+## Funcionalidades principales
 
-- Inicio de sesión con roles de administrador, técnico y consulta.
+### Gestión de dispositivos
 - Registro de routers, switches, servidores, PCs, impresoras, access points y firewalls.
-- IP o hostname, puerto TCP, MAC, fabricante, modelo y ubicación.
-- Comprobación individual o de todos los dispositivos registrados.
-- Estado En línea / Fuera de línea.
-- Medición de latencia en milisegundos.
-- Porcentaje de disponibilidad con base en las comprobaciones recientes.
-- Historial de resultados por dispositivo.
-- Alertas automáticas cuando un dispositivo deja de responder.
-- Cierre automático de la alerta cuando el equipo vuelve a estar disponible.
-- Dashboard con indicadores de salud de la red.
-- Identificación de dispositivos con latencia alta.
-- Vista lógica de topología.
+- Configuración de IP o hostname, puerto TCP, MAC, fabricante, modelo y ubicación.
 - Búsqueda y filtros.
 - Exportación de dispositivos a CSV.
+
+### Monitoreo
+- Comprobación individual o de todos los dispositivos registrados.
+- Estado **En línea / Fuera de línea**.
+- Medición de latencia en milisegundos.
+- Porcentaje de disponibilidad basado en comprobaciones recientes.
+- Historial de resultados por dispositivo.
+- Identificación de dispositivos con latencia alta.
+
+### Alertas y trazabilidad
+- Alertas automáticas cuando un dispositivo deja de responder.
+- Cierre automático de la alerta cuando el equipo vuelve a estar disponible.
+- Historial de actividad.
+- Dashboard con indicadores de salud de la red.
+- Vista lógica de topología.
+
+### API y calidad
 - API de consulta en `/api/devices`.
-- Historial de actividad para trazabilidad.
-- Pruebas automáticas con Pytest y GitHub Actions.
+- Inicio de sesión con roles de administrador, técnico y consulta.
+- Pruebas automáticas con Pytest.
+- GitHub Actions para validación automática.
 
 ## Tecnologías
 
-Python, Flask, SQLAlchemy, MySQL / PyMySQL, HTML, CSS, Flask-Login, Flask-WTF, TCP/IP, sockets de Python, Cisco Packet Tracer, Docker Compose, Pytest, GitHub Actions y Gunicorn.
+- **Backend:** Python, Flask, SQLAlchemy
+- **Base de datos:** MySQL / PyMySQL
+- **Frontend:** HTML, CSS
+- **Redes:** TCP/IP, sockets de Python, Cisco Packet Tracer
+- **Autenticación y formularios:** Flask-Login, Flask-WTF
+- **Infraestructura:** Docker Compose, Gunicorn
+- **Calidad:** Pytest, GitHub Actions
 
 ## Cómo funciona el monitoreo
 
-En modo local, cada dispositivo tiene un host y un puerto TCP configurado. El sistema intenta establecer una conexión únicamente con ese equipo y ese puerto, mide el tiempo de respuesta y guarda el resultado.
+En modo local, cada dispositivo tiene un host y un puerto TCP configurado. El sistema intenta establecer una conexión únicamente con ese equipo y ese puerto, mide el tiempo de respuesta y almacena el resultado.
 
-No se escanean rangos de red ni múltiples puertos. Para usarlo en una red real, los equipos deben ser propios o estar autorizados para monitoreo.
+No se escanean rangos completos ni múltiples puertos. Para utilizarlo en una red real, los equipos deben ser propios o estar autorizados para monitoreo.
 
-La demo pública usa `MONITOR_MODE=demo` porque un servicio alojado en Internet no puede comprobar una red LAN privada. Ese modo permite enseñar el flujo de estados, latencia, alertas y recuperación sin realizar conexiones externas desde la demo.
+La demo pública utiliza `MONITOR_MODE=demo`, ya que un servicio alojado en Internet no puede comprobar directamente una red LAN privada. Este modo permite mostrar estados, latencia, alertas y recuperación sin realizar conexiones externas desde la demo.
 
-## Ejecutarlo en local
+## Ejecución local
 
 ```bash
 python -m venv .venv
@@ -46,7 +60,7 @@ python seed.py
 python run.py
 ```
 
-### Usuarios de demostración
+## Usuarios de demostración
 
 | Rol | Correo | Contraseña |
 |---|---|---|
@@ -56,17 +70,22 @@ python run.py
 
 ## Laboratorio Cisco
 
-En `docs/topologia.md` dejé una topología de referencia y en `docs/cisco` están los comandos base para un router y un switch. Esto permite relacionar la aplicación con un laboratorio de direccionamiento y administración por SSH en Packet Tracer.
+En `docs/topologia.md` se incluye una topología de referencia y en `docs/cisco` están los comandos base para un router y un switch. Esto relaciona la aplicación con un laboratorio de direccionamiento y administración por SSH en Cisco Packet Tracer.
 
 ## Seguridad y alcance
 
-El proyecto está hecho para monitorear únicamente dispositivos que se registran manualmente. En la demo pública las comprobaciones son simuladas y no generan tráfico hacia direcciones ingresadas por el usuario.
+El proyecto está diseñado para monitorear únicamente dispositivos que se registran manualmente. En la demo pública, las comprobaciones son simuladas y no generan tráfico hacia direcciones ingresadas por el usuario.
 
 ## Mejoras futuras
 
-Más adelante se podría agregar monitoreo programado en segundo plano, notificaciones por correo, métricas históricas por periodo, SNMP de solo lectura y una topología más dinámica.
+- Monitoreo programado en segundo plano.
+- Notificaciones por correo.
+- Métricas históricas por periodo.
+- SNMP de solo lectura.
+- Topología más dinámica.
 
 ## Autor
 
 **Alan Daniel Martínez Martínez**  
-Estudiante de Ingeniería en Sistemas Computacionales — UNITEC
+Estudiante de Ingeniería en Sistemas Computacionales — UNITEC  
+[GitHub](https://github.com/adm-land) · [LinkedIn](https://www.linkedin.com/in/alan-daniel-martinez-mart%C3%ADnez-5215a8218)
