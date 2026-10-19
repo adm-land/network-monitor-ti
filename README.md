@@ -4,6 +4,12 @@ Sistema web para **registrar y monitorear dispositivos de red**, dando seguimien
 
 Lo desarrollé como proyecto de portafolio para combinar programación con fundamentos de redes y laboratorios Cisco. El enfoque es mantener un monitoreo básico, claro y controlado: los dispositivos se registran manualmente y el sistema guarda los resultados de cada comprobación.
 
+## Demo pública
+
+**Probar aplicación:** https://network-monitor-ti-alan.onrender.com
+
+> La demo pública utiliza `MONITOR_MODE=demo`, por lo que simula las comprobaciones de red para mostrar estados, latencia, alertas y recuperación sin generar tráfico hacia redes externas.
+
 ## Funcionalidades principales
 
 ### Gestión de dispositivos
@@ -40,7 +46,7 @@ Lo desarrollé como proyecto de portafolio para combinar programación con funda
 - **Frontend:** HTML, CSS
 - **Redes:** TCP/IP, sockets de Python, Cisco Packet Tracer
 - **Autenticación y formularios:** Flask-Login, Flask-WTF
-- **Infraestructura:** Docker Compose, Gunicorn
+- **Infraestructura:** Docker Compose, Gunicorn, Render
 - **Calidad:** Pytest, GitHub Actions
 
 ## Cómo funciona el monitoreo
